@@ -17,8 +17,8 @@ var noOfDrumButtons = document.querySelectorAll(".drum").length;
 for (let i = 0; i < noOfDrumButtons; i++) {
     document.querySelectorAll(".drum")[i].addEventListener("click", function () {
         var instrument = document.querySelectorAll(".drum")[i];
-        setTimeout(function () { instrument.style.color = "crimson" }, 200);
-        this.style.color = "cyan"
+        this.classList.add("pressed");
+        setTimeout(function () { instrument.classList.remove("pressed"); }, 200);
         var key = this.innerHTML;
         makeSound(key);
     });
@@ -32,6 +32,7 @@ document.addEventListener("keypress", function (event) {
 });
 
 function makeSound(key) {
+    key = key.toLowerCase();
     switch (key) {
         case "a":
             var audio = new Audio("assetes/sounds/tom1.mp3");
@@ -66,53 +67,20 @@ function makeSound(key) {
     }
 }
 
-// function keyColour(key){
-//     for(let j = 0; j < noOfDrumButtons; j++){
-//         document.getElementsByClassName("drum")[j].style.color = "crimson";
-//     }
-//     switch(key){
-//         case "a": 
-//            document.querySelector(".a").style.color="white";
-//         break;
-//         case "s": 
-//             document.querySelector(".s").style.color="cyan";
-//             break;
-//         case "d": 
-//             document.querySelector(".d").style.color="indigo";
-//             break;
-//         case ";": 
-//             document.querySelector(".baby").style.color="darkslategray";
-//             break;
-//         case "j": 
-//             document.querySelector(".j").style.color="yellow";
-//             break;
-//         case "k": 
-//             document.querySelector(".k").style.color="maroon";
-//             break;
-//         case "l": 
-//             document.querySelector(".l").style.color="cornsilk";
-//             break;
-//         case "f": 
-//             setTimeout(function(){ document.getElementById("subtitle").innerHTML = previousSubtitle; }, 7000);
-//             setTimeout(function(){ document.getElementById("subtitle").style.color = "white"; }, 7000);
-//             document.getElementById("subtitle").style.color = "springgreen";
-//             document.getElementById("subtitle").innerHTML = subtitleText;
-//             break;
-//     }
-// }
-
 function keyColour(key) {
+    key = key.toLowerCase();
+
     if (key === ";") {
         var instrument = document.querySelector(".baby");
-        instrument.style.color = "cyan";
-        setTimeout(function () { instrument.style.color = "crimson" }, 150);
+        instrument.classList.add("pressed");
+        setTimeout(function () { instrument.classList.remove("pressed"); }, 150);
     }
     else if (key === "f") {
         arreNahiBhai();
     }
     else if (key == "a" || key == "s" || key == "d" || key == "j" || key == "k" || key == "l") {
         var instrument = document.querySelector("." + key)
-        instrument.style.color = "cyan";
-        setTimeout(function () { instrument.style.color = "crimson" }, 150);
+        instrument.classList.add("pressed");
+        setTimeout(function () { instrument.classList.remove("pressed"); }, 200);
     }
 }
